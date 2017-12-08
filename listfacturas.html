@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<!-- <th:block th:include="/common/head :: head('Facturaci&oacute;n')"/> -->
+<head>
+    <title>Index</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+</head>
+<body>
+<th:block th:include="/common/header :: header"/>
+<div class="container">
+ 	<div class="row">
+		<div class="col">
+			<form class="form-inline" id="frm" th:action="@{'/facturas'}">
+				<input  type="hidden" 
+						id="page"
+						name="page" 
+						th:value="${facturas.number}"/>
+				<label class="mr-sm-2" for="empresa">Empresa</label>
+				<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="empresa" name="empresa">
+				    <option selected>Salpon SL</option>
+				    <option value="1">Empresa 1</option>
+				    <option value="2">Empresa2</option>
+				</select>
+				<label class="mr-sm-2" for="ejercicio">Ejercicio</label>
+				<select class="custom-select mb-2 mr-sm-2 mb-sm-0" id="ejercicio" name="ejercicio">
+				    <option selected>2017</option>
+				    <option value="2016">2016</option>
+				    <option value="2015">2015</option>
+				    <option value="2014">2014</option>
+				</select>
+				<div class="input-group">
+			      <input type="text" 
+			      		 name="term" 
+			      		 th:value="${term}" class="form-control" placeholder="Buscar por..." aria-label="Buscar por..." autofocus="autofocus"/>
+			      <span class="input-group-btn"><button class="btn btn-secondary" type="submit">Go!</button></span>
+			    </div><!-- /input-group -->
+				<hr/>
+				<table class="table table-sm">
+				  <caption th:text="#{facturas.list.titol}">Lista de Facturas</caption>
+				  <thead>
+				    <tr>
+				      <th scope="col">Cif</th>
+				      <th scope="col">Serie</th>
+				      <th scope="col">Numero</th>
+				      <th scope="col">Facturado a</th>
+				      <th scope="col">Dirección</th>
+				      <th scope="col">Importe total</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				    <tr th:each="factura:${facturas}">
+				      <th scope="row">
+				      	<a th:href="@{'factura/'+${factura.id}}">
+						   <span th:utext="${factura.cif}">43014534Q</span>
+						</a>
+				      </th>
+				      <td th:text="${factura.serie}">A</td>
+				      <td th:text="${factura.numero}">001</td>
+				      <td th:text="${factura.nom}">Magnolia S.L</td>
+				      <td th:text="${factura.direccion}">Calle huertas 24</td>
+				      <td th:text="${factura.total}">1200.60</td>
+				    </tr>
+				   
+				  </tbody>
+				</table>
+				<!-- <div  th:if="${facturas.totalPages==0}"
+					 class="alert alert-warning">
+					 No se han encontrado resultados
+					 <a th:href="@{/factura/new}" class="btn">Nuevo</a>
+				</div> -->
+				<!-- paginado -->
+				<!-- <nav aria-label="Page navigation"
+					 th:if="${facturas.totalPages>0}">
+				  <ul class="pagination">
+				    <li>
+				      <a	th:if="${(facturas.number-1)>=0}"
+				      		href="#"	
+				      		th:onclick="${'setPage('+(facturas.number-1)+')'}"> 
+				      		&lt;
+						</a>
+				    </li>
+				    <li th:each="page : ${#numbers.sequence(0,facturas.totalPages-1)}"
+				    	th:classappend="${facturas.number==page}?'active'">
+						<a 
+							href="#"	th:onclick="${'setPage('+page+')'}">
+							<span th:utext="${page+1}" ></span>
+						</a>
+					</li>
+				    <li>
+				    	<a	th:if="${facturas.number &lt; (facturas.totalPages -1)}"
+				    		href="#"
+				    		th:onclick="${'setPage('+(facturas.number+1)+')'}">  
+				    		&gt;
+						</a>
+						<a th:href="@{/factura/new}" class="btn">Nuevo</a>	
+				    </li>
+				  </ul>
+				</nav>				 -->
+			</form>
+		</div>
+	</div> <!-- row -->
+</div> <!-- container -->
+<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+	<!-- <th:block th:include="/common/footer :: footer"/> -->
+	<script type="text/javascript">
+		function setPage(num){
+			$("#page").val(num);
+			$("#frm").submit();
+		}
+	</script>
+</body>
+</html>
