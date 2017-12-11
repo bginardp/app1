@@ -13,7 +13,7 @@
 <body>
 	<!-- <th:block th:include="/common/header :: header" /> -->
 	<div class="container">
-		
+
 		<form th:object="${factura}" th:action="@{/factura/save}"	method="post">
 			<input type="hidden" id="clienteId" name="clienteId" value="*{clienteId}"></input>
 			<div class="row">
@@ -62,7 +62,7 @@
 									<h5>De: <span><input class="form-control form-control-sm" id="empresa"
 												placeholder="escribir las primeras letras" type="text"/></span></h5>
 									<address id="dadesEmp">
-										<strong>Salpon S.l</strong><br /> Calle La Rambla 3 Bajos<br />
+										<strong>Azucares S.l</strong><br /> Calle La Baja 3 Bajos<br />
 										07001 Palma<br /> Illes Balears<br />
 									</address>
 								</div>
@@ -70,7 +70,7 @@
 									<h5>Facturado a: <span><input class="form-control form-control-sm" id="cliente"
 												placeholder="escribir las primeras letras" type="text"/></span></h5>
 									<address id="dadesCli">
-										<strong>MULCICINES PORTO PI S.L</strong><br /> Carrer
+										<strong>TRUMP PORCO S.L</strong><br /> Carrer
 										Ciutadella nº 26 A<br /> 07008 Palma<br /> Illes Balears<br />
 									</address>
 								</div>
@@ -96,7 +96,7 @@
 													th:selected="${factura.forpagId == forpag.id}"
 													th:text="${forpag.dem}">Tranferencia</option>
 											</select>
-											
+
 										</div>
 									</div>
 									</span></h5>
@@ -158,19 +158,19 @@
 										</tr>
 									</tbody>
 								</table>
-								</div>						       
+								</div>
 						    </div>
 						</div>
 					</div> <!-- card -->
 				</div>	<!-- col -->
 			</div> <!-- row -->
 			<div class="row justify-content-end">
-				
+
 				 <button type="submit" class="btn btn-primary">Guardar</button>
-				
-			</div> 
+
+			</div>
 		</form>
-		
+
 	</div>
 	<!-- container -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -190,9 +190,9 @@
 							$("#clienteId").val(id);
 							$("#cliente").val(nom);
 							$("#dadesCli").html(
-									'<strong>' + ui.item.label + '</strong><br/>' 
-											+ ui.item.cif + '<br/>' 
-											+ ui.item.direccion + '<br/>' 
+									'<strong>' + ui.item.label + '</strong><br/>'
+											+ ui.item.cif + '<br/>'
+											+ ui.item.direccion + '<br/>'
 											+ ui.item.value);
 						}
 					});
@@ -207,14 +207,14 @@
 							$("#productoId").val(id);
 							$("#producto").val(nom);
 							/* $("#dadesPro").html(
-									'<strong>' + ui.item.label + '</strong><br/>' 
-											+ ui.item.cif + '<br/>' 
-											+ ui.item.direccion + '<br/>' 
+									'<strong>' + ui.item.label + '</strong><br/>'
+											+ ui.item.cif + '<br/>'
+											+ ui.item.direccion + '<br/>'
 											+ ui.item.value); */
 						}
 					});
 		});
 	</script>
-	
+
 </body>
 </html>
